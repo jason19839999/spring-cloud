@@ -1,0 +1,97 @@
+1.微服务的定义：
+  ① 一系列微小的服务共同组成；
+  ② 跑在自己的进程里面，服务间互不干扰；
+  ③ 每个服务为独立的业务开发，基于领域模型去建造，之后的服务拆分会有体现；
+  ④ 独立部署；
+  ⑤ 分布式的管理；
+
+2.架构的演变
+  ① 单一应用架构    → ORM   所有的应用都打包在一个war包里面，基本没有外部依赖，
+                            因为UI、SERVICE、DAO等都在一个整体里面。
+			    在一个tomcat容器，共用一套DB。
+                            缺点：开发效率低；代码维护难；部署不灵活(稍微一个小修改就需要
+			    构建整个（打包发布）项目);稳定性不高(牵一发动全身)；扩展性不够；
+  ② 垂直应用架构    → MVC
+  ③ 分布式应用架构  → RPC
+  ⑤ 流动式计算架构  → SOA
+
+3.微服务架构的基础框架/组件
+  ① 服务注册发现
+  ② 服务网关（Service Gateway）
+  ③ 后端通用服务（也称中间层服务Middl Tier Service）
+  ④ 前端服务 (也称边缘服务Edge Service) 
+    聚合：就是客户端比如需要调用2个接口才能完成的
+          那么通过前端服务，这时通过前端服务调用这2个接口，这样客户端只要调用前端服务
+          就可以了（即只调用一次）。
+    裁剪：根据不同的需求返回不同的数据，web端订单详情页数据和app返回的详情页数据是不同的，
+          需要单独控制，这时就需要前端服务进行裁剪。
+
+4.Spring Cloud Eureka 服务的注册与发现
+  ① Eureka Server 注册中心 作为轮询负载均衡器，并提供服务的故障切换功能；
+  ② Eureka Client 服务注册 简化与服务器的交互，微服务通过它来和Eureka Server交互，
+  连接到Eureka Server，并维持心跳连接，从而被监控系统中各个微服务是否正常运行；
+
+5.Eureka-Server搭建：
+  ① 在启动类的头部添加配置，使服务端生效 @EnableEurekaServer
+  ② 在yml文件添加配置项；eureka.client.service-url.defaultzone : http://localhost:8761/eureka/
+    eureka.client.register-with-eureka: false → 添加此项的目的就是为了不让在注册中心出现，因为服务端
+    不配置客户端启动报错，所以这里配置了客户端，但是需要隐藏一下。
+  ③ Instances currently registered with Eureka 中 UP (1) - LAPTOP-2ABHAC6C:client
+    跳转的页面是应用的信息，展示一些健康检查;
+  ④ eureka.server.enable-self-preservation: false → 关闭自我保护模式，只能在开发环境关闭。
+    由于服务端会维持一个心跳，查看client端的上线率，如果client端不断地关闭重启，那么会导致这个上限率
+    很低，会报警，所谓的报警模式；通过这个命令可以在开发环境关闭；
+
+6.Eureka-Client搭建：
+  ① 在启动类的头部添加配置，使客户端生效 @EnableDiscoveryClient
+  ② 在yml文件添加配置项：eureka.client.service-url.defaultzonet : http://localhost:8761/eureka/
+  ③ 配置client实例名字： eureka.instance.hostname: clientName
+  
+7. Eureka-Server 高可用(为了模拟多台eureka-server,在IDEA中的VM options 设置 
+      ①-Dserver.port=8761 ② -Dserver.port=8762 ③ -Dserver.port=8763)
+   ① 启动两台Eureka-Server,使这2台Eureka-Server互相注册
+   Eureka-Server1:（eureka.client.server-url: http://localhost:8762/eureka/）
+   Eureka-Server2:（eureka.client.server-url: http://localhost:8761/eureka/）
+   他们两个互相通信，只要有一方收到注册信息，那么会同步到另一方。
+        *************************************************************************************
+        net stat 查看端口是否被占用，如果被占用，就用下面的命令查看那些进程占了，然后干掉进程
+	注意：linux: kill -9 pid
+	      win10: 任务管理器 → 进程
+	C:\Users\LEN0V0>netstat -aon|findstr "8762"
+	  TCP    0.0.0.0:8762           0.0.0.0:0              LISTENING       732
+	  TCP    127.0.0.1:8762         127.0.0.1:49288        ESTABLISHED     732
+	  TCP    127.0.0.1:8762         127.0.0.1:49339        ESTABLISHED     732
+	  TCP    127.0.0.1:49288        127.0.0.1:8762         ESTABLISHED     732
+	  TCP    127.0.0.1:49339        127.0.0.1:8762         ESTABLISHED     17540
+	  TCP    [::]:8762              [::]:0                 LISTENING       732
+
+	C:\Users\LEN0V0>tasklist|findstr "732"
+	chrome.exe                   15480 Console                    2     45,732 K
+	java.exe                       732 Console                    2    362,284 K
+
+        干掉进程：
+	C:\Users\LEN0V0>taskkill /F /PID 15480
+	成功: 已终止 PID 为 15480 的进程。
+	C:\Users\LEN0V0>taskkill /F /PID 732
+	成功: 已终止 PID 为 732 的进程。
+        *************************************************************************************
+   ② eureka-client端绑定多个eureka-server地址
+     例如：eureka.client.server-url.defaultzone: http://localhost:8761/eureka,http://localhost:8762/eureka
+     如果client端注册的eureka-server挂了，那么他就失联了，所以在eureka-client端配置多个eureka-server地址，
+     保证任意一个eureka-server挂了，它都在注册发现eureka-server里面；
+
+8.Eureka总结
+  ① @EnableEurekaServer  @EnableDiscoveryClient
+  ② 心跳检测、健康检查、负载均衡等功能；
+  ③ Eureka的高可用，生产上建议至少两台以上；
+  ④ 分布式系统中，服务注册中心是最重要的基础部分；
+
+9.
+
+
+
+
+
+
+
+
