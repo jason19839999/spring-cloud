@@ -46,6 +46,17 @@ public class ProductServiceImpl implements ProductService {
                     return output;
                 })
                 .collect(Collectors.toList());
+
+//        List<ProductInfoOutput>  lstProductInfoOutput = new ArrayList<ProductInfoOutput>();
+//        for (ProductInfo productInfo: lst
+//             ) {
+//            ProductInfoOutput obj = new ProductInfoOutput();
+//            obj.setProductId(productInfo.getProductId());
+//            obj.setProductName(productInfo.getProductName());
+//            obj.setProductDescription(productInfo.getProductDescription());
+//            lstProductInfoOutput.add(obj);
+//        }
+//        return lstProductInfoOutput;
     }
 
     @Override

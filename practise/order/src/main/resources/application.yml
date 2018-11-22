@@ -2,8 +2,8 @@ eureka:
   client:
     service-url:
      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: product
+#  instance:
+#    hostname: order
 spring:
   application:
     name: order
@@ -14,7 +14,10 @@ spring:
     url: jdbc:mysql://localhost:3306/o2o?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
   jpa:
     show-sql: true
-
+#  设置超时时间否则调用product会超时报错：→  feign.RetryableException: Read timed out executing POST http://product/product/listForOrder
+ribbon:
+  ReadTimeout: 60000
+  ConnectiTimeout: 60000
 
 
 
