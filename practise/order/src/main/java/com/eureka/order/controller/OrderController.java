@@ -1,5 +1,6 @@
 package com.eureka.order.controller;
 
+import com.eureka.order.dataobject.OrderDetail;
 import com.eureka.order.feignClient.ProductClient;
 import com.eureka.order.VO.ResultVO;
 import com.eureka.order.converter.OrderForm2OrderDTOConverter;
@@ -16,11 +17,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.rmi.CORBA.Util;
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * Created by
@@ -82,5 +82,29 @@ public class OrderController {
         List<ProductInfoOutput> lstProducts = productClient.listForOrder(lst);
         System.out.println(lstProducts);
         return "OK";
+    }
+
+    @GetMapping("/testCreate")
+    public ResultVO<Map<String, String>> create(){
+
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setBuyerName("张三");
+        orderDTO.setBuyerAddress("太阳宫");
+        orderDTO.setBuyerOpenid("AOUIOAO23423");
+        orderDTO.setBuyerPhone("234234234");
+        orderDTO.setOrderAmount(BigDecimal.ZERO);
+        orderDTO.setOrderId("afaf4324");
+        orderDTO.setOrderStatus(0);
+        List<OrderDetail> lst = new ArrayList<OrderDetail>();
+        OrderDetail objOrderDetail = new OrderDetail();
+        objOrderDetail.setProductId("157875196366160022");
+        objOrderDetail.setProductQuantity(2);
+        lst.add(objOrderDetail);
+        orderDTO.setOrderDetailList(lst);
+        OrderDTO result = orderService.create(orderDTO);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("orderId", result.getOrderId());
+        return ResultVOUtil.success(map);
     }
 }

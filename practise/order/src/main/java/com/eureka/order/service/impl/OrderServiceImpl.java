@@ -72,16 +72,16 @@ public class OrderServiceImpl implements OrderService {
         }
 
        //扣库存(调用商品服务)
-        List<DecreaseStockInput> decreaseStockInputList = orderDTO.getOrderDetailList().stream()
-                .map(e -> new DecreaseStockInput(e.getProductId(), e.getProductQuantity()))
-                .collect(Collectors.toList());
-        productClient.decreaseStock(decreaseStockInputList);
+//        List<DecreaseStockInput> decreaseStockInputList = orderDTO.getOrderDetailList().stream()
+//                .map(e -> new DecreaseStockInput(e.getProductId(), e.getProductQuantity()))
+//                .collect(Collectors.toList());
+//        productClient.decreaseStock(decreaseStockInputList);
 
         //订单入库
         OrderMaster orderMaster = new OrderMaster();
         orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMaster);
-//        orderMaster.setOrderAmount(orderAmout);
+        orderMaster.setOrderAmount(orderAmout);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
         orderMasterRepository.save(orderMaster);
