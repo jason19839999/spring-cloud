@@ -1,4 +1,4 @@
-package com.eureka.order.feignClient;
+package com.eureka.order.feign_client;
 
 import com.eureka.order.dto.DecreaseStockInput;
 import com.eureka.order.dto.ProductInfoOutput;

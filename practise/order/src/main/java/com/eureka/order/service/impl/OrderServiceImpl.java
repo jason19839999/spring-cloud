@@ -1,9 +1,8 @@
 package com.eureka.order.service.impl;
 
-import com.eureka.order.feignClient.ProductClient;
+import com.eureka.order.feign_client.ProductClient;
 import com.eureka.order.dataobject.OrderDetail;
 import com.eureka.order.dataobject.OrderMaster;
-import com.eureka.order.dto.DecreaseStockInput;
 import com.eureka.order.dto.OrderDTO;
 import com.eureka.order.dto.ProductInfoOutput;
 import com.eureka.order.enums.OrderStatusEnum;
