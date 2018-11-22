@@ -10,6 +10,6 @@ public class MsgController {
 
     @GetMapping("/getMsg")
     public String getMsg() {
-        return "come from msg3...";
+        return "come from msg6...";
     }
 }
