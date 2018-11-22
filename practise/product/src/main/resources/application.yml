@@ -2,6 +2,9 @@ eureka:
   client:
     service-url:
      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 6
+    lease-renewal-interval-in-seconds: 6
 #  instance:
 #    hostname: product
 spring:
@@ -14,7 +17,8 @@ spring:
     url: jdbc:mysql://localhost:3306/o2o?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
   jpa:
     show-sql: true
-
+server:
+  port: 8082
 
 
 
