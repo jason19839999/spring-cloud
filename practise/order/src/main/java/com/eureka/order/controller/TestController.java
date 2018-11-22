@@ -2,6 +2,7 @@ package com.eureka.order.controller;
 
 import com.eureka.order.VO.ResultVO;
 import com.eureka.order.dataobject.OrderDetail;
+import com.eureka.order.dto.CartDTO;
 import com.eureka.order.dto.OrderDTO;
 import com.eureka.order.dto.ProductInfoOutput;
 import com.eureka.order.feign_client.ProductClient;
@@ -13,8 +14,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +29,6 @@ public class TestController {
 
     @Autowired
     private LoadBalancerClient loadBalancerClient;
-
-//    @Autowired
-//    private RestTemplate restTemplate;
 
     @Autowired
     private ProductClient productClient;
@@ -72,15 +69,40 @@ public class TestController {
         return ResultVOUtil.success(map);
     }
 
-//    @GetMapping("/testMsg")
-//    public String testMsg(){
-//        //① @LoadBalancerClient
-//        ServiceInstance serviceInstance =loadBalancerClient.choose("product");
-//        String host = serviceInstance.getHost();
-//        int port = serviceInstance.getPort();
-//        ResponseEntity<String> response =restTemplate.exchange("http://" + host + ":"+ port + "/msg/getMsg",HttpMethod.POST,null,String.class);
-//        return response.getBody();
-//    }
+    @GetMapping("/testMsg")
+    public String testMsg(){
+        //一.@LoadBalancerClient
+        RestTemplate restTemplate = new RestTemplate();
+        ServiceInstance serviceInstance =loadBalancerClient.choose("product");
+        String host = serviceInstance.getHost();
+        int port = serviceInstance.getPort();
+
+        String result = "";
+
+        //前台传值的情况
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        CartDTO request = new CartDTO();
+        HttpEntity<CartDTO> httpEntity = new HttpEntity<CartDTO>( request, requestHeaders);
+        ResponseEntity<String> response =restTemplate.exchange("http://" + host+ ":"+ port + "/msg/getMsg",HttpMethod.GET,httpEntity,String.class);
+        if (response.getStatusCode() == HttpStatus.OK) {
+            result = response.getBody();
+        }
+//        try {  返回值使用范例****************************************************************************************
+//            ResponseEntity<StockResponse> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, StockResponse.class);
+//            if (response.getStatusCode() == HttpStatus.OK && response.getBody().getHeader().getResponse_code() == 0) {
+//                List<StockResponseData> requestDatas = response.getBody().getResponse_data();
+//                for (StockResponseData responseData : requestDatas) {
+//                    stocks.add(responseData.getStock_info().getExchange() + "_" + responseData.getStock_info().getCode());
+//                }
+//            }
+//        } catch (Exception ex) {
+//            logger.error(ex.getMessage());
+//        }
+        //前台不传值的情况
+        result = restTemplate.getForObject("http://" + host + ":"+ port + "/msg/getMsg",String.class);
+        return result;
+    }
 
 
 }

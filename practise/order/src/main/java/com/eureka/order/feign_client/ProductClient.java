@@ -14,6 +14,8 @@ import java.util.List;
  * @创建时间 $date$
  * @修改人和其它信息
  */
+
+//name = spring.application.name = product
 @FeignClient(name = "product")
 public interface ProductClient {
     @PostMapping("/product/listForOrder")
