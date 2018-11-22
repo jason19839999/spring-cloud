@@ -15,7 +15,7 @@ import java.util.List;
  * @修改人和其它信息
  */
 
-//name = spring.application.name = product
+//name = spring.application.name = product   即：是应用的名字。。。
 @FeignClient(name = "product")
 public interface ProductClient {
     @PostMapping("/product/listForOrder")
