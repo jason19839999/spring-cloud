@@ -3,6 +3,7 @@ package com.eureka.order.feign_client;
 import com.eureka.order.dto.DecreaseStockInput;
 import com.eureka.order.dto.ProductInfoOutput;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,4 +24,8 @@ public interface ProductClient {
 
     @PostMapping("/product/decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
+
+    @GetMapping("/msg/getMsg")
+    public String getMsg();
+
 }

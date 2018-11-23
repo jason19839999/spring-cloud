@@ -76,18 +76,18 @@ public class TestController {
         ServiceInstance serviceInstance =loadBalancerClient.choose("product");
         String host = serviceInstance.getHost();
         int port = serviceInstance.getPort();
-
-        String result = "";
+        //调用feign客户端访问
+        String result = productClient.getMsg();
 
         //前台传值的情况
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
-        CartDTO request = new CartDTO();
-        HttpEntity<CartDTO> httpEntity = new HttpEntity<CartDTO>( request, requestHeaders);
-        ResponseEntity<String> response =restTemplate.exchange("http://" + host+ ":"+ port + "/msg/getMsg",HttpMethod.GET,httpEntity,String.class);
-        if (response.getStatusCode() == HttpStatus.OK) {
-            result = response.getBody();
-        }
+//        HttpHeaders requestHeaders = new HttpHeaders();
+//        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+//        CartDTO request = new CartDTO();
+//        HttpEntity<CartDTO> httpEntity = new HttpEntity<CartDTO>( request, requestHeaders);
+//        ResponseEntity<String> response =restTemplate.exchange("http://" + host+ ":"+ port + "/msg/getMsg",HttpMethod.GET,httpEntity,String.class);
+//        if (response.getStatusCode() == HttpStatus.OK) {
+//            result = response.getBody();
+//        }
 //        try {  返回值使用范例****************************************************************************************
 //            ResponseEntity<StockResponse> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, StockResponse.class);
 //            if (response.getStatusCode() == HttpStatus.OK && response.getBody().getHeader().getResponse_code() == 0) {
@@ -100,7 +100,7 @@ public class TestController {
 //            logger.error(ex.getMessage());
 //        }
         //前台不传值的情况
-        result = restTemplate.getForObject("http://" + host + ":"+ port + "/msg/getMsg",String.class);
+//        result = restTemplate.getForObject("http://" + host + ":"+ port + "/msg/getMsg",String.class);
         return result;
     }
 
