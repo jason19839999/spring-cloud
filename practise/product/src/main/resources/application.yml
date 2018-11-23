@@ -2,11 +2,12 @@ eureka:
   client:
     service-url:
      defaultZone: http://localhost:8761/eureka/
-  instance:
-    lease-expiration-duration-in-seconds: 6
-    lease-renewal-interval-in-seconds: 6
+    registery-fetch-interval-seconds: 2
+    eureka-server-connect-timeout-seconds: 20
+    eureka-server-read-timeout-seconds: 10
+    filter-only-up-instances: true
 #  instance:
-#    hostname: product
+#    hostname: product        Spring Cloud Eureka 常用配置及说明  →  https://www.cnblogs.com/li3807/p/7282492.html
 spring:
   application:
     name: product
