@@ -10,6 +10,10 @@ public class MsgController {
 
     @GetMapping("/getMsg")
     public String getMsg() {
+<<<<<<< HEAD
         return "come from msg2...";
+=======
+        return "come from msg222222...";
+>>>>>>> 9254dcd3bee5272a98aded31bcf954d120297153
     }
 }
