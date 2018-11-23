@@ -3,9 +3,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: false
-  instance:
-   lease-expiration-duration-in-seconds: 6
-   lease-renewal-interval-in-seconds: 6
+  server:
+      # 测试时关闭自我保护机制，保证不可用服务及时踢出
+    enable-self-preservation: false
 spring:
   application:
     name: eureka

@@ -11,7 +11,7 @@ public class MsgController {
     @GetMapping("/getMsg")
     public String getMsg() {
 
-        return "come from msg222...";
+        return "come from msg111...";
 
     }
 }

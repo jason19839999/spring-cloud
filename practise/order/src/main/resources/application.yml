@@ -1,11 +1,17 @@
 eureka:
   client:
-    service-url:
+   service-url:
      defaultZone: http://localhost:8761/eureka/
-    registery-fetch-interval-seconds: 2
-    eureka-server-connect-timeout-seconds: 20
-    eureka-server-read-timeout-seconds: 10
-    filter-only-up-instances: true
+   registery-fetch-interval-seconds: 2
+   eureka-server-connect-timeout-seconds: 20
+   eureka-server-read-timeout-seconds: 10
+   filter-only-up-instances: true
+  instance:
+   lease-expiration-duration-in-seconds: 2
+   lease-renewal-interval-in-seconds: 2
+#   以上配置说明  https://www.cnblogs.com/hfultrastrong/p/8623288.html    Spring Cloud Eureka 常用配置及说明  →  https://www.cnblogs.com/li3807/p/7282492.html
+#       lease-renewal-interval-in-seconds 每间隔1s，向服务端发送一次心跳，证明自己依然”存活“
+#   　lease-expiration-duration-in-seconds  告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
 #  instance:
 #    hostname: order
 spring:
