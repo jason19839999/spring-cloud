@@ -24,7 +24,7 @@ public interface ProductClient {
 
     @PostMapping("/product/decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
-<<<<<<< HEAD
+
     static class ProductClientFallback implements ProductClient{
 
         @Override
@@ -36,11 +36,15 @@ public interface ProductClient {
         public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
 
         }
+
+        @Override
+        public String getMsg() {
+            return null;
+        }
     }
-=======
+
 
     @GetMapping("/msg/getMsg")
     public String getMsg();
 
->>>>>>> 4aa9648ae8d3718177a7f0a6d6e45fcbc87546ed
 }
