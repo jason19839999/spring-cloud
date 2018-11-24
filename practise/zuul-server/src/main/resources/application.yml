@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 9001
+spring:
+  application:
+    name: zuul
+zuul:
+  routes:
+#  http://localhost:9001/order/test/testListProducts 替换成 http://localhost:7001/test/testListProducts
+#    myorder:
+#     path: /myorder/**
+#     serviceId: order
+#      开启cookie，如果不设置，zuul不支持cookie设置和传递
+#      sensitiveHeaders:
+     order: /myorder/**
+     product: /myproduct/**
+#     排除不需要暴露的接口
+#  ignored-patterns:
+#    - /**/test/testListProducts
+management:
+  security:
+    enabled: false
