@@ -3,6 +3,7 @@ package com.eureka.order.feign_client;
 import com.eureka.order.dto.DecreaseStockInput;
 import com.eureka.order.dto.ProductInfoOutput;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,6 +24,7 @@ public interface ProductClient {
 
     @PostMapping("/product/decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
+<<<<<<< HEAD
     static class ProductClientFallback implements ProductClient{
 
         @Override
@@ -35,4 +37,10 @@ public interface ProductClient {
 
         }
     }
+=======
+
+    @GetMapping("/msg/getMsg")
+    public String getMsg();
+
+>>>>>>> 4aa9648ae8d3718177a7f0a6d6e45fcbc87546ed
 }
