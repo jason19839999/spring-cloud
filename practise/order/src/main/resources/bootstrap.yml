@@ -7,6 +7,23 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: dev
+hystrix:
+  command:
+   default:
+    execution:
+     isolation:
+       thread:
+        timeoutInMilliseconds: 1000
+   getProductInfoList:
+    execution:
+     isolation:
+       thread:
+        timeoutInMilliseconds: 1000
+#开启feign-hystrix
+feign:
+  hystrix:
+    enabled: true
+
 #eureka:
 #  client:
 #    service-url:

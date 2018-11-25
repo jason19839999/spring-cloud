@@ -43,6 +43,7 @@ public class TokenFilter extends ZuulFilter {
 //            requestContext.setSendZuulResponse(false);
 //            requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
 //        }
+        //明天搞一下这里要返回json串
         return null;
     }
 }

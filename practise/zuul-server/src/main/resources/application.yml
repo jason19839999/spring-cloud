@@ -15,11 +15,32 @@ zuul:
 #     serviceId: order
 #      开启cookie，如果不设置，zuul不支持cookie设置和传递
 #      sensitiveHeaders:
+#     简写
      order: /myorder/**
      product: /myproduct/**
 #     排除不需要暴露的接口
 #  ignored-patterns:
 #    - /**/test/testListProducts
-management:
-  security:
-    enabled: false
+
+#解决这个超时问题 ： com.netflix.zuul.exception.ZuulException: Hystrix Readed time out
+  host:
+   connect-timeout-millis: 10000
+   socket-timeout-millis: 60000
+
+#management:
+#  security:
+#    enabled: false
+
+#加上这个解决偶尔超时问题
+hystrix:
+  command:
+   default:
+    execution:
+     isolation:
+       thread:
+        timeoutInMilliseconds: 6000
+#解决这个超时问题 ： com.netflix.zuul.exception.ZuulException: Hystrix Readed time out
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+

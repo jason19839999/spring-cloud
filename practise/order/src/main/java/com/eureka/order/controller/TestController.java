@@ -41,7 +41,11 @@ public class TestController {
     public String testListProducts(){
         List<String> lst = Arrays.asList("157875196366160022","157875227953464068");
         List<ProductInfoOutput> lstProducts = productClient.listForOrder(lst);
-        System.out.println(lstProducts);
+        if(lstProducts == null) {
+            System.out.println("/testListProducts 降级成功!");
+        }else{
+            System.out.println(lstProducts);
+        }
         return "OK";
     }
 

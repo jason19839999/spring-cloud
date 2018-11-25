@@ -49,7 +49,7 @@ public class AuthBuyerFiler extends ZuulFilter {
         String token = request.getParameter("token");
         if(Util.isEmptyString(token)){
             requestContext.setSendZuulResponse(false);
-            requestContext.setResponseStatusCode(HttpStatus.BAD_GATEWAY.value());
+            requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
         }
         return null;
     }

@@ -8,7 +8,7 @@ spring:
           uri: https://github.com/jason19839999/config-center.git
           username: jason19839999
           password: zsc@19831221
-          basedir: E:/local-config/basedir
+          basedir: /local-config/basedir
 eureka:
   client:
     service-url:
