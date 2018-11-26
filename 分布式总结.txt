@@ -1,0 +1,27 @@
+堆             		实例对象，类对象 → 类本身
+虚拟机栈  		基本数据类型和实例对象的引用， 是java 方法运行的内存模型，方法开始时，生成栈帧，包含方法出口，动态链接等，栈在
+                        虚拟机栈入栈和出栈的过程。
+程序计数器
+本地方法栈
+方法区                  非堆 包，class ,方法，field,
+
+eureka server  /client  服务管理注册与发现  client与服务端心跳连接，一旦server收不到心跳，认为已经断开，可以设置时间间隔
+feign / restTemplate    服务通信 openfeign  @EnableFeignClients    @FeignClient(name ="spring.application.name" fallback="") 只配置调用方即可
+config                  配置中心 spring cloud bus /rabbitMq / git / webhook  实现config自动更新；实现所有配置统一管理  name-profile.yml
+                                 spring.cloud.config.discovery.enabled = true ,service-id: product;   config.profile = dev
+                                 spring.cloud.config.server.git  uri/username/password/basedir 
+
+zuul                    路由与过滤  filter-type / filter-order/ should-filter /  run   zuul.routes.   order: /myorder/**   exclude-patterns : /**/order/productForlist
+
+hystrix                 降级熔断    feign-hystrix  feign.hystix.enabled = true;  FeignClient(name='applicationname',fallback='')  HystirxCommand
+                                    fallback的内容实现调用服务的接口，如果发生降级则返回。
+                                    HystrixComman(commandProperties = {
+                                    HystrixProperty(name = "CircuitBreaker.enabled" value= "true"), 开启熔断
+                                    HystrixProperty(name = "" value = ""                                           ),   } )
+				    //超时配置
+				    @HystrixCommand(commandProperties = {
+					    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+
+sleuth/zipkin           服务跟踪与调优
+
+
