@@ -4,8 +4,9 @@ eureka:
      defaultZone: http://localhost:8761/eureka/
     registery-fetch-interval-seconds: 2
   instance:
-    lease-expiration-duration-in-seconds: 2
-    lease-renewal-interval-in-seconds: 2
+    InitialInstanceInfoReplicationIntervalSeconds: 10
+#    lease-expiration-duration-in-seconds: 2
+#    lease-renewal-interval-in-seconds: 2
 #  instance:
 #    hostname: product        Spring Cloud Eureka 常用配置及说明  →  https://www.cnblogs.com/li3807/p/7282492.html
 #   以上配置说明  https://www.cnblogs.com/hfultrastrong/p/8623288.html
