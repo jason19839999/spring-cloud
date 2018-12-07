@@ -8,9 +8,9 @@ eureka:
     enable-self-preservation: false
   instance:
 #  eureka客户需要多长时间发送心跳给eureka服务器，表明它仍然活着,默认为30秒 https://www.jianshu.com/p/98f4e5f6bca7
-    LeaseRenewalIntervalInSeconds: 10
+    LeaseRenewalIntervalInSeconds: 3
 #    Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除，默认为90秒  https://www.jianshu.com/p/98f4e5f6bca7
-    LeaseExpirationDurationInSeconds: 10
+    LeaseExpirationDurationInSeconds: 3
 
 spring:
   application:
