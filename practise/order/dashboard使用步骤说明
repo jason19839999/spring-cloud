@@ -21,4 +21,4 @@
 
 第三步： 在启动类上添加注解@EnableHystrixDashboard
 
- 第四步： 通过这个地址查看dashboard  →  //http://localhost:9001/hystrix 通过这个地址查看dashboard
+第四步： 通过这个地址查看dashboard  →  //http://localhost:9001/hystrix 通过这个地址查看dashboard
