@@ -24,7 +24,9 @@ hystrix:
 feign:
   hystrix:
     enabled: true
-
+#供dashboard使用
+management:
+  context-path:  /
 #eureka:
 #  client:
 #    service-url:

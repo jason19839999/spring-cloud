@@ -36,12 +36,12 @@ public class HystrixController {
 		if (number % 2 == 0) {
 			return "success";
 		}
-        Thread.sleep(2000);
-		return  "ok";
-//		RestTemplate restTemplate = new RestTemplate();
-//		return restTemplate.postForObject("http://127.0.0.1:8005/product/listForOrder",
-//				Arrays.asList("157875196366160022"),
-//				String.class);
+//        Thread.sleep(2000);
+//		return  "ok";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject("http://127.0.0.1:8005/product/listForOrder",
+				Arrays.asList("157875196366160022"),
+				String.class);
 
 // 注意一下：接口内部如果异常也会触发降级
 //		throw new RuntimeException("发送异常了");
