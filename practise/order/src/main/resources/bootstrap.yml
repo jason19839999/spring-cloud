@@ -14,11 +14,12 @@ hystrix:
      isolation:
        thread:
         timeoutInMilliseconds: 1000
-  getProductInfoList:
+# 注意：下面这个→设置熔断的方法名，和上面default同一个层级
+   getProductInfoList:
     execution:
      isolation:
        thread:
-        timeoutInMilliseconds: 1000
+        timeoutInMilliseconds: 2500
 #开启feign-hystrix
 feign:
   hystrix:
