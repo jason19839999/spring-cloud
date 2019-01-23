@@ -14,11 +14,11 @@ hystrix:
      isolation:
        thread:
         timeoutInMilliseconds: 1000
-   getProductInfoList:
+  getProductInfoList:
     execution:
      isolation:
        thread:
-        timeoutInMilliseconds: 1500
+        timeoutInMilliseconds: 2500
 #开启feign-hystrix
 feign:
   hystrix:

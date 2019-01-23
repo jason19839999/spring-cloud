@@ -2,8 +2,6 @@ package com.eureka.order.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +14,7 @@ import java.util.Arrays;
  *
  */
 @RestController
-@DefaultProperties(defaultFallback = "defaultFallback")
+//@DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
 
 	//超时配置  默认为1000ms = 1秒   如果配置文件配置了超时  →  时间那么此处就失效了
@@ -30,7 +28,7 @@ public class HystrixController {
 //			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
 //			@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),	//错误率
 //	})
-	@HystrixCommand
+	@HystrixCommand(defaultFallback = "fallback")
 	@GetMapping("/getProductInfoList")
 	public String getProductInfoList(@RequestParam("number") Integer number) throws InterruptedException {
 		if (number % 2 == 0) {
