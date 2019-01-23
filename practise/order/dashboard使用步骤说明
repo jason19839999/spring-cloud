@@ -1,0 +1,24 @@
+第一步：在pom.xml中添加依赖
+          <dependency>
+              <groupId>org.springframework.cloud</groupId>
+              <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+          </dependency>
+
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-actuator</artifactId>
+          </dependency>
+
+第二步： 在yml文件添加如下配置项目
+            #供dashboard使用
+            management:
+               endpoints:
+                 web:
+                   exposure:
+                     include: hystrix.stream
+            #供dashboard使用 ，但是已经废弃了
+               context-path: /
+
+第三步： 在启动类上添加注解@EnableHystrixDashboard
+
+ 第四步： 通过这个地址查看dashboard  →  //http://localhost:9001/hystrix 通过这个地址查看dashboard

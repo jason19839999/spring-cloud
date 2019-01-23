@@ -1,0 +1,11 @@
+第一种：在一般接口中添加降级和熔断
+               参照：com/eureka/order/controller/HystrixController.java
+
+第二种： feign-hystrix的使用
+               参照：com/eureka/order/feign_client/ProductClient.java
+               配置项：
+                            #开启feign-hystrix
+                            feign:
+                              hystrix:
+                                enabled: true
+                实现接口的类要加上注解： @Component，注入到java容器里面
