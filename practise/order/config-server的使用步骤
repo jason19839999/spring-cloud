@@ -1,9 +1,19 @@
 1.为什么要把application.yml 文件名称改为bootstrap.yml?
-   bootstrap 启动引导配置，让配置先启动
+    bootstrap 启动引导配置，让配置先启动
 
 2.高可用 →  通过设置多个端口来 →  启动多个实例
-   -Dserver.port = 8001
+     -Dserver.port = 8001
 
+3.如果注册的eureka-server的端口不是8761，那么就需要把这个配置加到项目yml里面，否则找不到？
+         在这里我建议大家，把关于所有注册的相关配置都放在本地项目里面，一般改动不大，
+         由于项目启动时先读取bootstrap.yml,如果配置在远程git上没有及时获取到配置信息会报错。
+        #eureka:
+        #  client:
+        #    service-url:
+        #     defaultZone: http://localhost:8761/eureka/
 
-
-
+4.比如在配置中心的远程git上面添加了 order.yml 和order-test.yml
+        那么获取的时候会把order.yml和order-test.yml合并了，这里需要特别注意！！！
+        所以添加配置文件的时候要注意，尽量不要添加order.yml文件，
+        或者把项目共用的配置项添加到order.yml里面（比如：redis访问等等），
+        这样既实现了统一配置，也不影响其他项目配置。
