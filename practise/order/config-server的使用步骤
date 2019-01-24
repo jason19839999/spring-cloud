@@ -1,0 +1,9 @@
+1.为什么要把application.yml 文件名称改为bootstrap.yml?
+   bootstrap 启动引导配置，让配置先启动
+
+2.高可用 →  通过设置多个端口来 →  启动多个实例
+   -Dserver.port = 8001
+
+
+
+
