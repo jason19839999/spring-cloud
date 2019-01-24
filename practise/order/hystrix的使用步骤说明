@@ -1,3 +1,5 @@
+https://wiki.imooc.com/   学习工具字典库
+
 第一种：在一般接口中添加降级和熔断
                参照：com/eureka/order/controller/HystrixController.java
 

@@ -1,0 +1,25 @@
+https://wiki.imooc.com/   学习工具字典库
+
+1.验证配置是否正确，可以按照以下地址测试一下    文件格式一般使用  spring.application.name-dev/prod/test.yml
+        http://localhost:8000/order-dev.yml
+        /{label}/{name}-{profiles}.yml
+        /{name}-{profiles}.yml
+        label     分支   不写的话默认master分支
+        name    服务名
+        profiles 环境
+
+2.在yml文件里面配置绑定 每个项目yml文件所属git仓库相关信息    git地址/用户名/密码/本地git仓库存储地址
+        spring:
+          application:
+            name: config
+          cloud:
+            config:
+              server:
+                git:
+                  uri: https://github.com/jason19839999/config-center.git
+                  username: jason19839999
+                  password: zsc@19831221
+                  basedir: /local-config/basedir
+
+
+
