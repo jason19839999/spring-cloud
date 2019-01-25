@@ -1,0 +1,26 @@
+1. 实现多个相同的实例监控同一个队列，采用分组方式，即将应用里面增加如下配置即可：
+     将应用分组，即group: order  这样这一组实例就只能监听 myMessage这个队列了。
+     spring:
+        cloud:
+             stream:
+                    bindings:
+                      myMessage:    消息队列名称
+                        group: order
+                        content-type: application/json     在stream消息队列里面显示明文了，就能看到具体信息了。
+
+2.stream 消息格式  java-object 然后给Encoding base64的格式了
+     加上第1条中配置中的 content-type: application/json就行了。
+
+3.特点
+      轻松利用StreamClient  →   @Input SubscribableChannel & @Output  MessageChannel 发送和 StreamListener 接收消息
+      进一步封装了中间件逻辑，程序员只关注业务逻辑实现
+      切换中间件
+      目前支持仅支持 RabbitMQ & Kafka
+
+
+
+
+
+
+
+

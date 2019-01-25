@@ -26,14 +26,16 @@ public class StreamReceiver {
      * @param message
      */
     @StreamListener(value = StreamClient.INPUT)
-    @SendTo(StreamClient.INPUT2)
+    @SendTo(StreamClient.INPUT2)   //发送成功之后发送消息给INPUT2，告诉他收到消息了
     public String process(OrderDTO message) {
-        log.info("StreamReceiver: {}", message);
+//        log.info("StreamReceiver: {}", message);
+        //发送消息到INPUT2
         return "received.";
     }
 
+    //验证I并处理 INPUT2
     @StreamListener(value = StreamClient.INPUT2)
     public void process2(String message) {
-        log.info("StreamReceiver2: {}", message);
+//        log.info("StreamReceiver2: {}", message);
     }
 }

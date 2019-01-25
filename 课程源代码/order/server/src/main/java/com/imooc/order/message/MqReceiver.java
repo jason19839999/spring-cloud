@@ -16,7 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class MqReceiver {
 
-    //1. @RabbitListener(queues = "myQueue")
+    //注意：这里面发送消息的功能在test项目里面。
+
+    //1. 需要手动事先创建队列  @RabbitListener(queues = "myQueue")
     //2. 自动创建队列 @RabbitListener(queuesToDeclare = @Queue("myQueue"))
     //3. 自动创建, Exchange和Queue绑定
     @RabbitListener(bindings = @QueueBinding(
@@ -24,7 +26,7 @@ public class MqReceiver {
             exchange = @Exchange("myExchange")
     ))
     public void process(String message) {
-        log.info("MqReceiver: {}", message);
+//        log.info("MqReceiver: {}", message);
     }
 
     /**
@@ -37,7 +39,7 @@ public class MqReceiver {
             value = @Queue("computerOrder")
     ))
     public void processComputer(String message) {
-        log.info("computer MqReceiver: {}", message);
+//        log.info("computer MqReceiver: {}", message);
     }
 
 
@@ -51,6 +53,6 @@ public class MqReceiver {
             value = @Queue("fruitOrder")
     ))
     public void processFruit(String message) {
-        log.info("fruit MqReceiver: {}", message);
+//        log.info("fruit MqReceiver: {}", message);
     }
 }
