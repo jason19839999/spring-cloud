@@ -6,10 +6,10 @@
                     bindings:
                       myMessage:    消息队列名称
                         group: order
-                        content-type: application/json     在stream消息队列里面显示明文了，就能看到具体信息了。
+                        content-type: application/json     在stream消息队列里面显示明文了，就能看到具体明文信息了。
 
 2.stream 消息格式  java-object 然后给Encoding base64的格式了
-     加上第1条中配置中的 content-type: application/json就行了。
+     加上第1条中配置中的 content-type: application/json就能看到具体明文信息了。
 
 3.特点
       轻松利用StreamClient  →   @Input SubscribableChannel & @Output  MessageChannel 发送和 StreamListener 接收消息
