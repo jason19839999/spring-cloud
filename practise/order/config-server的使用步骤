@@ -1,8 +1,8 @@
 1.为什么要把application.yml 文件名称改为bootstrap.yml?
-    bootstrap 启动引导配置，让配置先启动
+        bootstrap 启动引导配置，让配置先启动
 
 2.高可用 →  通过设置多个端口来 →  启动多个实例
-     -Dserver.port = 8001
+        -Dserver.port = 8001
 
 3.如果注册的eureka-server的端口不是8761，那么就需要把这个配置加到项目yml里面，否则找不到？
          在这里我建议大家，把关于所有注册的相关配置都放在本地项目里面，一般改动不大，
@@ -17,3 +17,33 @@
         所以添加配置文件的时候要注意，尽量不要添加order.yml文件，
         或者把项目共用的配置项添加到order.yml里面（比如：redis访问等等），
         这样既实现了统一配置，也不影响其他项目配置。
+
+5.spring cloud bus 自动更新配置    →   消息队列方式
+        远端git 调用 /bus-refresh 通知   →    config-server 和 order/product 通过消息队列传递消息
+                                                                        RabbitMQ
+              手动利用浏览器调用：localhost:8000/bus-refresh   →   config-server   →   order/product
+
+6.引入spring cloud bus  注意：需要同时在config-server和order 项目配置文件里面加如下依赖
+            <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+             </dependency>
+
+7.@RefreshScope
+         注意：在读取配置文件的时候需要在读取的地方加上此注解。
+
+8.使用webhooks 通知config-center
+        github:  webhook : localhost:8000/monitor                     →  config-center  →  order/product
+                                         content-type:application/json
+
+
+
+
+
+
+
+
+
+
+
+
