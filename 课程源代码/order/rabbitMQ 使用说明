@@ -1,0 +1,11 @@
+1.参照代码：
+         com/imooc/order/MqSenderTest.java
+         com/imooc/order/message/MqReceiver.java
+         com/imooc/order/message/ProductInfoReceiver.java
+
+2.注意：在使用rabbitMQ和stream之前都要配置rabbitMQ访问，参照如下：
+         spring.rabbitmq.port=5672
+         spring.rabbitmq.username=guest
+         spring.rabbitmq.password=guest
+         spring.rabbitmq.virtual-host=/
+

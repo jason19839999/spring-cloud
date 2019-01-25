@@ -35,7 +35,7 @@ public class MqReceiver {
      */
     @RabbitListener(bindings = @QueueBinding(
             exchange = @Exchange("myOrder"),
-            key = "computer",
+            key = "computer",    //routing-key
             value = @Queue("computerOrder")
     ))
     public void processComputer(String message) {
@@ -49,7 +49,7 @@ public class MqReceiver {
      */
     @RabbitListener(bindings = @QueueBinding(
             exchange = @Exchange("myOrder"),
-            key = "fruit",
+            key = "fruit",    //routing-key
             value = @Queue("fruitOrder")
     ))
     public void processFruit(String message) {

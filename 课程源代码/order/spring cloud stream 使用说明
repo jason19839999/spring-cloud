@@ -17,7 +17,10 @@
       切换中间件
       目前支持仅支持 RabbitMQ & Kafka
 
-
+4.主要参照代码：
+      com/imooc/order/message/StreamClient.java
+      com/imooc/order/message/StreamReceiver.java
+      com/imooc/order/controller/SendMessageController.java
 
 
 
