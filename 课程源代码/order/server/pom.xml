@@ -53,7 +53,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <!--这里注意一下，groupId为jar包的package的头部，artifactId为工程名称product + module名称client ,这里的引入是保存在本地maven目录下面-->
+        <!--这里注意一下，这里的引入是保存在本地maven目录下面-->
+        <!--下面的依赖包groupId和artifactId就是依赖包所在项目里面的pom.xml文件里面的配置项 <groupId> 和 <artifactId>-->
+        <!--<groupId>com.imooc</groupId>-->
+        <!--<artifactId>product-client</artifactId>-->
+
         <!--<dependency>-->
             <!--<groupId>com.imooc</groupId>-->
             <!--<artifactId>product-client</artifactId>-->
