@@ -12,6 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker
 @SpringCloudApplication
+//@ComponentScan(excludeFilters = {
+//		@Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+//		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
 //@ComponentScan(basePackages = "com.imooc")
 //@ComponentScan(basePackages = {"ka","com"})  扫描多个包配置
 @ComponentScan(basePackages = {"com.imooc","com.imooc","com.imooc"})
