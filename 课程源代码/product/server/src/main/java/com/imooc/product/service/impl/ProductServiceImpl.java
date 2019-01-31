@@ -53,9 +53,7 @@ public class ProductServiceImpl implements ProductService {
     public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
         List<ProductInfo> productInfoList = decreaseStockProcess(decreaseStockInputList);
 
-        //以下发送消息到mq,其实也可以考虑直接set到redis?
-
-        //发送mq消息  order 里面处理消息
+        //发送mq消息
         List<ProductInfoOutput> productInfoOutputList = productInfoList.stream().map(e -> {
             ProductInfoOutput output = new ProductInfoOutput();
             BeanUtils.copyProperties(e, output);
