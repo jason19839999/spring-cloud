@@ -41,16 +41,16 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-            <dependency>
-                <groupId>com.imooc</groupId>
-                <artifactId>product-client</artifactId>
-                <version>${product-client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.imooc</groupId>
-                <artifactId>order-common</artifactId>
-                <version>${order-common.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.imooc</groupId>-->
+                <!--<artifactId>product-client</artifactId>-->
+                <!--<version>${product-client.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.imooc</groupId>-->
+                <!--<artifactId>order-common</artifactId>-->
+                <!--<version>${order-common.version}</version>-->
+            <!--</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
