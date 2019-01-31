@@ -12,7 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker
 @SpringCloudApplication
-@ComponentScan(basePackages = "com.imooc")
+//@ComponentScan(basePackages = "com.imooc")
+//@ComponentScan(basePackages = {"ka","com"})  扫描多个包配置
+@ComponentScan(basePackages = {"com.imooc","com.imooc","com.imooc"})
 public class OrderApplication {
 
 	public static void main(String[] args) {
