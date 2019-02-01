@@ -68,6 +68,21 @@
             <!--<artifactId>order-common</artifactId>-->
         <!--</dependency>-->
 
+        <!--引入本地lib jar包-->
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>product-client</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/product-client.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>product-common</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/product-common.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
