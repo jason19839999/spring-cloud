@@ -48,10 +48,10 @@
             <artifactId>product-common</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.test</groupId>
-            <artifactId>product-demo</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.test</groupId>-->
+            <!--<artifactId>product-demo</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
