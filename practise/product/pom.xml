@@ -62,6 +62,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <!--测试multi-module包的引入-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>multi-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
