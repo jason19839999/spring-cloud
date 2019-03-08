@@ -45,6 +45,18 @@ public class MultiServerApplication {
         for(int i =5000000;i<6000000;i++){
             maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
         }
+        for(int i =6000000;i<7000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =7000000;i<8000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =8000000;i<9000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =9000000;i<10000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
 
         Set<String> sets = new HashSet<String>(100000000);
 
