@@ -27,7 +27,22 @@ public class MultiServerApplication {
     public static void main(String[] args) {
 
         Map<String,Object> maps = new HashMap<String,Object>(100000000);
-        for(int i =0;i<10000000;i++){
+        for(int i =0;i<1000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =1000000;i<2000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =2000000;i<3000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =3000000;i<4000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =4000000;i<5000000;i++){
+            maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
+        }
+        for(int i =5000000;i<6000000;i++){
             maps.put(String.valueOf(i),  UUID.randomUUID().toString().replace("-", ""));
         }
 
